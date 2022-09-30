@@ -1,13 +1,13 @@
 import React, {createContext} from 'react'
-
+//import * as firebase from "firebase"
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import config from "../config/firebase"
 
-const firebaseContext = createContext();
+const FirebaseContext = createContext();
 
-if (!firebase.apps.length) {
+if (firebase.apps.length === 0) {
     firebase.initializeApp(config)
 }
 
@@ -16,5 +16,7 @@ const db = firebase.firestore();
 const Firebase = {}
 
 const FirebaseProvider = (props) => {
-    return <firebaseContext.Provider value={Firebase}>{props.children}</firebaseContext.Provider>
+    return <FirebaseContext.Provider value={Firebase}>{props.children}</FirebaseContext.Provider>
 };
+
+export { FirebaseContext, FirebaseProvider };
