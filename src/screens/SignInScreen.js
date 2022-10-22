@@ -1,10 +1,39 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import styled from 'styled-components/native'
 import Text from '../components/Text'
+import { FirebaseContext } from '../context/FireBaseContext'
+import { UserContext } from '../context/UserContext'
+
 export default SignInScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
+  const firebase = useContext(FirebaseContext);
+  const [_,setUser] = useContext(UserContext);
+
+  const signIn = async () => {
+    setLoading(true);
+
+    try {
+        await firebase.signIn(email, password);
+        const uid = firebase.getCurrentUser().uid;
+        const userInfo = await firebase.getUserInfo(uid);
+
+        setUser({
+          username: userInfo.username,
+          email: userInfo.email,
+          uid,
+          profilePhotoUrl: userInfo.profilePhotoUrl,
+          isLoggedIn: true,
+
+        });
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Container>
       <Main>
@@ -39,7 +68,7 @@ export default SignInScreen = ({navigation}) => {
         </AuthContainer>
       </Auth>
 
-      <SignInContainer disabled={loading}>
+      <SignInContainer onPress={signIn} disabled={loading}>
         {loading ? (
           <Loading/>
         ) : (<Text bold center color="#ffffff">
@@ -50,7 +79,7 @@ export default SignInScreen = ({navigation}) => {
       </SignInContainer>
 
       <SignUp onPress={() => navigation.navigate("SignUp")}>
-        <Text small center >New to RepsWithFriends?{" "}
+        <Text small center >New to Reps With Friends?{" "}
         <Text bold color="#00A36C">Sign Up</Text>
         </Text>
       </SignUp>

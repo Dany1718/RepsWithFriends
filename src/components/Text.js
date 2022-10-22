@@ -52,5 +52,11 @@ const Text = styled.Text`
                 return `text-align: left;`;
         }
     }}
+    ${({ top }) => {
+        switch(true) {
+            case top:
+                return 'top: 10px';
+        }
+    }}
 `;
 
