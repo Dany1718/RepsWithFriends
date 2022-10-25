@@ -37,7 +37,7 @@ export default SignInScreen = ({navigation}) => {
   return (
     <Container>
       <Main>
-        <Text title semi center >Welcome back.</Text>
+       <Text title semi center >RepsWithFriends</Text>
       </Main>
 
       <Auth>
@@ -47,7 +47,7 @@ export default SignInScreen = ({navigation}) => {
             autoCapitalize="none" 
             autoCompleteType="email" 
             autoCorrect={false} 
-            autoFocus={true} 
+            autoFocus={false} 
             keyboardType="email-address"
             onChangeText={email => setEmail(email.trim())}
             value={email}
@@ -60,7 +60,7 @@ export default SignInScreen = ({navigation}) => {
             autoCapitalize="none" 
             autoCompleteType="password" 
             autoCorrect={false} 
-            autoFocus={true} 
+            autoFocus={false} 
             secureTextEntry={true}
             onChangeText={password => setPassword(password.trim())}
             value={password}
@@ -121,7 +121,7 @@ const AuthField = styled.TextInput`
 `;
 
 const SignInContainer = styled.TouchableOpacity`
-  margin: 0 32px;
+  margin: -10px 32px 10px 32px;
   height: 48px;
   align-items: center;
   justify-content: center;

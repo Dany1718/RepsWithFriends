@@ -29,7 +29,9 @@ export default ProfileScreen = () => {
           {item.postedAt}
           </Text>
       </PostInfoContainer>
-
+      <Options>
+        <Entypo name="dots-three-horizontal" size={16} color="#73788b"/>
+      </Options>
     </PostHeaderContainer>
     
     <Post>
@@ -50,20 +52,24 @@ export default ProfileScreen = () => {
       </PostDetails>
     </Post>
   </PostContainer>;
+
+
   return (
       <Container>
+        <OtherContainer>
           <ProfilePhotoContainer>
             <ProfilePhoto source={user.profilePhotoUrl === "default" 
                                   ? require("../../assets/defaultProfilePhoto.png") 
                                   : {uri: user.profilePhotoUrl}}/>
                                   <Text large bold margin="16px 0 32px 0">{user.username}</Text>
+                                  
           </ProfilePhotoContainer>
-          
-
+          <EditButton title="Edit profile"></EditButton>
+          </OtherContainer>
           <StatsContainer>
               <StatContainer>
                   <Text medium light>
-                    21
+                    4
                     </Text>
                   <Text small bold color="#c2c4cd">
                     Posts
@@ -71,21 +77,22 @@ export default ProfileScreen = () => {
               </StatContainer>
               <StatContainer>
                   <Text medium light>
-                    420
+                    378
                     </Text>
-                  <Text medium bold color="#c2c4cd">
+                  <Text small bold color="#c2c4cd">
                     Followers
                     </Text>
               </StatContainer>
               <StatContainer>
                   <Text medium light>
-                    69
+                    197
                     </Text>
                   <Text small bold color="#c2c4cd">
                     Following
                     </Text>
               </StatContainer>
           </StatsContainer>
+          
           <FeedContainer>
         <Feed data={tempDataProfile} renderItem={renderPost} keyExtractor={item => item.id.toString()}/>
       </FeedContainer>
@@ -103,21 +110,34 @@ const Container = styled.View`
 
 `;
 
+const OtherContainer = styled.View`
+  flex-direction:row;
+`;
+
+const EditButton = styled.Button`
+  
+`;
+
 const FeedContainer = styled.View`
   align-items: center;
-  margin-top: -300px;
+  margin-top: -400px;
   flex: 1;  
+  
 `;
 const Feed = styled.FlatList`
-
+alignSelf: "center";
 `;
 
+
+const Options = styled.View`
+
+`;
 
 const ProfilePhotoContainer = styled.View`
   shadow-opacity: 0.8;
   shadow-radius: 30px;
   shadow-color: #222222;
-  margin-right: 200px;
+  margin-right: 100px;
 `;
 
 const ProfilePhoto = styled.Image`
@@ -130,7 +150,8 @@ const ProfilePhoto = styled.Image`
 const StatsContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin: -20px 50px 0px
+  margin-top: -20px;
+  margin-bottom: 30px;
   flex: 1;
 `;
 
@@ -140,10 +161,11 @@ const StatContainer = styled.View`
 `;
 
 const PostContainer = styled.View`
-  margin: 16px 16px 0 16px;
+  margin: 16px 16px 0px 16px;
   background-color: #ffffff;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 8px;
+  width: 360px;
 `;
 
 const Post = styled.View`

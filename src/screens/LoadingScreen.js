@@ -27,7 +27,7 @@ useEffect(() => {
       } else {
         setUser((state) => ({...state, isLoggedIn: false}));
       }
-    }, 500);
+    }, 750);
 },[]);
   return (
     <Container>

@@ -59,6 +59,7 @@ const Container = styled.View`
   flex: 1;
   background-color: #ebecf3;
   padding-top: 64px;
+  margin-bottom:36px;
 `;
 
 const FeedContainer = styled.View`
@@ -69,10 +70,11 @@ const Feed = styled.FlatList`
 `;
 
 const PostContainer = styled.View`
-  margin: 16px 16px 0 16px;
+  margin: 16px 16px 0px 16px;
   background-color: #ffffff;
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 8px;
+  width: 360px;
 `;
 
 const PostHeaderContainer = styled.View`
@@ -89,7 +91,7 @@ const PostProfilePhoto = styled.Image`
 
 const PostInfoContainer = styled.View`
   flex: 1;
-  margin: 0 16px;
+  margin: 4px 16px;
 
 `;
 
